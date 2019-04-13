@@ -20,6 +20,12 @@ let package = Package(
     name: "SmokeAWS",
     products: [
         .library(
+            name: "BatchClient",
+            targets: ["BatchClient"]),
+        .library(
+            name: "BatchModel",
+            targets: ["BatchModel"]),
+        .library(
             name: "CloudWatchClient",
             targets: ["CloudWatchClient"]),
         .library(
@@ -94,6 +100,12 @@ let package = Package(
         .package(url: "https://github.com/amzn/smoke-http.git", .upToNextMajor(from: "1.0.0")),
     ],
     targets: [
+        .target(
+            name: "BatchClient",
+            dependencies: ["BatchModel", "SmokeAWSHttp"]),
+        .target(
+            name: "BatchModel",
+            dependencies: ["LoggerAPI"]),
         .target(
             name: "CloudWatchClient",
             dependencies: ["CloudWatchModel", "SmokeAWSHttp"]),
